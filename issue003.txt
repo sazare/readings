@@ -1,0 +1,59 @@
+Neural Theorem Provers Do Not Learn Rules Without Exploration
+by Michiel de Jong, Fei Sha
+arXiv:1906.06805 [cs.LG]
+https://arxiv.org/abs/1906.06805
+
+## 気になった参考文献
+[6] Richard Evans and Edward Grefenstette. Learning explanatory rules from noisy data. Journal of Artificial Intelligence Research, 61:1–64, 2018.
+
+[8] Diederik P Kingma and Jimmy Ba. Adam: A method for stochastic optimization. arXiv preprint arXiv:1412.6980, 2014.
+
+[15] Tim Rockta ̈schel and Sebastian Riedel. End-to-end differentiable proving. In Advances in Neural Information Processing Systems, pages 3788–3800, 2017.
+これはissue#1
+
+[21] Fan Yang, Zhilin Yang, and William W Cohen. Differentiable learning of logical rules for knowledge base reasoning. In Advances in Neural Information Processing Systems, pages 2319–2328, 2017.
+
+
+## 何をしているのか?
+読んでいて方向に疑問を感じたので、あまり理解も進まず、適当に読み終えた。
+
+Abstractに
+> Neural symbolic processing aims to combine the generalization of 
+> logical learning approaches and the performance of neural networks. 
+
+とあるが、logical learning approchesというのは、おそらく、
+1. 学習させたいルールを混ぜたデータセットを作る
+2. そのデータでProverによってProofを作らせる
+3. そのproofを学習する
+というような手順だったと思う。
+
+疑問はいろいろある。
+1) NTPの論文では、対象とする論理式はHorn clauseで、しかも関数を含まないもの
+に限定されていた。証明はしていないが、直感的に、そのような論理式の集合は
+命題論理に変換できるはずで、だとすれば、そこで説いている問題はSAT Solverで
+解ける問題なのではないか
+
+2) だとすると、the performance of neural networksの出る幕はないような気がする。
+(20191124追記)
+命題論理でも、NP-困難らしいので、NNで学習して高速に証明を導きたいという話のように思えてきた。
+
+
+3) "5.3 Diagnosis"には、NTPで証明(あるいはルール)を学習すると
+"winner-takes-all greedy fashion"になって、必要な証明が得られなくなる
+ようなことが書かれている。
+それは、学習している対象がそういうものだからではないか。
+著者は、Proverのそういう限界をNTPが超えてくれると期待していたということか。
+
+証明を分析して、都合のよい証明を評価するようにすれば、うまくいくような
+気もするが、自動証明でこれまでできなかったことをNNがそんなに簡単に解決できる
+ものだろうか。
+それは自動証明が根ざす本質的な問題なのではないか?
+
+★ 巡回セールスマンの地図と試行をNNで学習して、最適なルートをみつけることはできるのか?
+そういうことではないか?(もしかしてできるのか??)
+
+
+## おまけ
+四色問題とかの巨大な証明をNNで学習してみてはどうだろうか。
+
+
